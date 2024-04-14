@@ -11,6 +11,7 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode((1200, 800))  # 创建游戏窗口
         pygame.display.set_caption("Alien Invasion")  # 设置窗口标题
+        self.clock = pygame.time.Clock()  # 创建时钟对象
 
     def run_game(self):
         """开始游戏主循环"""
