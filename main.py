@@ -34,6 +34,7 @@ class AlienInvasion:
             这样你可以只更新屏幕上的这个特定区域。如果你不提供任何参数，update() 会默认更新整个屏幕，就像 flip() 一样。
             """
             pygame.display.flip()
+            self.clock.tick(60)  # 每秒运行60次
 
 
 if __name__ == '__main__':
