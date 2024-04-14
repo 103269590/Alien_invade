@@ -12,6 +12,7 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((1200, 800))  # 创建游戏窗口
         pygame.display.set_caption("Alien Invasion")  # 设置窗口标题
         self.clock = pygame.time.Clock()  # 创建时钟对象
+        self.bg_color = (230, 230, 230)
 
     def run_game(self):
         """开始游戏主循环"""
@@ -33,6 +34,8 @@ class AlienInvasion:
             pygame.display.update() 允许你提供一个可选的矩形区域作为参数，
             这样你可以只更新屏幕上的这个特定区域。如果你不提供任何参数，update() 会默认更新整个屏幕，就像 flip() 一样。
             """
+            self.screen.fill(self.bg_color)  # 每次循环时都重绘屏幕
+
             pygame.display.flip()
             self.clock.tick(60)  # 每秒运行60次
 
