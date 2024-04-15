@@ -33,6 +33,11 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+
+            # 删除已消失的子弹
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
             self._updata_screen()
             self.clock.tick(60)  # 每秒运行60次
 
@@ -45,7 +50,6 @@ class AlienInvasion:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
-
 
     def _check_keydown_events(self, event):
         """响应按下"""
