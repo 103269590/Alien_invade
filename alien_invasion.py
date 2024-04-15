@@ -14,8 +14,14 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()  # 创建时钟对象
         self.settings = Settings()
         # 创建游戏窗口
+        # self.screen = pygame.display.set_mode(
+        #     (self.settings.screen_width, self.settings.screen_height))
+        # 全屏显示
         self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height))
+            (0, 0), pygame.FULLSCREEN
+        )
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")  # 设置窗口标题
         self.ship = Ship(self)
 
@@ -37,12 +43,15 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
+
     def _check_keydown_events(self, event):
         """响应按下"""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif event.key == pygame.K_ESCAPE:
+            sys.exit()
 
     def _check_keyup_events(self, event):
         """响应释放"""
