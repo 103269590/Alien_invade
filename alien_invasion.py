@@ -13,8 +13,9 @@ class AlienInvasion:
         pygame.init()
         self.clock = pygame.time.Clock()  # 创建时钟对象
         self.settings = Settings()
+        # 创建游戏窗口
         self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height))  # 创建游戏窗口
+            (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")  # 设置窗口标题
         self.ship = Ship(self)
 
@@ -32,15 +33,23 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    self.ship.moving_right = True
-                elif event.key == pygame.K_LEFT:
-                    self.ship.moving_left = True
+                self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    self.ship.moving_right = False
-                elif event.key == pygame.K_LEFT:
-                    self.ship.moving_left = False
+                self._check_keyup_events(event)
+
+    def _check_keydown_events(self, event):
+        """响应按下"""
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+
+    def _check_keyup_events(self, event):
+        """响应释放"""
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = False
 
     def _updata_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
